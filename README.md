@@ -74,6 +74,17 @@ npm install
 npm run dev          # http://localhost:5173
 ```
 
+## Deploying the backend
+
+Four Python modules, no dependencies — the Lambda runtime already includes boto3.
+
+```bash
+cd backend/lambda
+zip -r ../reelforge-lambda.zip handler.py bedrock.py poster.py s3.py
+```
+
+Step-by-step deployment, environment variables, the IAM policy, and a troubleshooting table are in [`infrastructure/README.md`](infrastructure/README.md).
+
 With no `VITE_API_URL` configured, the app serves the fixture in `src/data/sampleMovie.js` so the full flow works offline. Copy `.env.example` to `.env.local` and set `VITE_API_URL` to the deployed API to generate for real.
 
 The browser only ever knows the API Gateway URL. AWS credentials stay in the Lambda execution role.
@@ -84,8 +95,8 @@ The browser only ever knows the API Gateway URL. AWS credentials stay in the Lam
 | --- | --- |
 | Specification (`docs/`) | ✅ Complete |
 | Frontend — landing, studio, result | ✅ Running against fixture |
-| Bedrock model access verification | ⬜ Phase 0 |
-| Lambda backend | ⬜ Phase 1 |
+| Lambda backend | ✅ Written, verified against stubbed AWS clients |
+| Bedrock model access verification | ⬜ Phase 0 — needs a real AWS account |
 | Deployment | ⬜ Phase 2–4 |
 
 Phase plan and timeline: [`docs/04-BUILD-PHASES.md`](docs/04-BUILD-PHASES.md)

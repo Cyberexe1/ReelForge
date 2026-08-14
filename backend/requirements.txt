@@ -1,0 +1,6 @@
+# The Lambda Python 3.12 runtime already includes boto3 and botocore, so the
+# deployment package needs no dependencies at all — zip the four modules and go.
+#
+# This file exists for local development only: running local_test.py or calling
+# Bedrock from your machine needs boto3 installed.
+boto3==1.40.35

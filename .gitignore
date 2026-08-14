@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+build/
+*.tsbuildinfo
+
+# Environment — never commit real values
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.zip
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

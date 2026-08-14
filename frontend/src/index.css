@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #08080b;
+  --color-ink-soft: #0e0e14;
+  --color-surface: #14141d;
+  --color-surface-2: #1b1b26;
+  --color-line: #262633;
+  --color-chalk: #f4f4f7;
+  --color-mist: #8b8b9e;
+  --color-forge: #ffb23e;
+  --color-ember: #ff6b35;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bebas Neue', 'Inter', sans-serif;
+
+  --animate-rise: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-glow: glow 4s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-chalk);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-forge);
+    color: var(--color-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Shared visual patterns. Keep this list short — utilities belong inline. */
+
+@utility rf-focus {
+  &:focus-visible {
+    outline: 2px solid var(--color-forge);
+    outline-offset: 2px;
+  }
+}
+
+@utility rf-card {
+  border-radius: calc(var(--spacing) * 6);
+  border: 1px solid var(--color-line);
+  background-color: color-mix(in oklab, var(--color-surface) 70%, transparent);
+}
+
+@utility rf-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: calc(var(--spacing) * 5);
+}
